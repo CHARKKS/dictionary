@@ -9,14 +9,17 @@ sed 's/^/text to add/g' source.txt > destination.txt
 sed 's/$/text to add/g' source.txt > destination.txt
 # original file's data will remain unedited
 
+## to COUNT the number of lines
+wc -l source.txt
+
 ## to DELETE data from a file and replace it with anything
 sed 's/tobedeleted//g' old.txt > new.txt
 sed 's ..' source.txt > destination.txt
 # the second one is abit strange. replace each dot with the character to be removed
 
 ## to DELETE columns of data
-awk command
-# lol no brainer way of doing it but it works i think
+awk '{print $1,$2,$3}' file
+# lol 
 
 ## to DELETE DUPLICATE lines of data
 uniq source.txt > destination.txt
@@ -36,8 +39,11 @@ sed 's/.{8}$//g' source.txt > destination.txt
 # original file's data will remain unedited
 
 ## to GREP (any line in the sourcefile.txt containing the string (text/nu,bers) would be copied...
-## sorce file remains
 grep "criteria" sourcefile.txt > destinationfile.txt
+# original file's data will remain unedited
+# not specific criteria1 or criteriad will still appear
+grep -w "criteria" sourcefile.txt > destination file.txt
+# speciifically grepping
 
 ## to MERGE files into column
 ## replace delimiter with comma, space or a set of characters
@@ -52,6 +58,18 @@ sed 's/StringToRepalce/Repalcementstring/g' source.txt > destination.txt
 ## to SORT files (alphabetically or numerically ithink)
 sort input.txt > output.txt
 sort -n input.txt > output.txt
+sort -nk2 input.txt > output.txt
+# sort numerically by column 2
+# all of these sort the numbers digits by digits...:(
 
 ## to SPLIT [filename] into separate files each containing (number of lines] lines of data
 split -l [number of lines] [filename]
+awk '{if ($2 == 1) print $1 }' inputfile
+awk '{if ($2 <= 75 && $2 >= 25) print $1,$2}' A.txt > PMA.txt
+# http://www.theunixschool.com/2012/06/awk-10-examples-to-split-file-into.html
+
+## to do VLOOKUPish things
+join File1.txt File2.txt
+join -1 2 -2 1 wine.txt reviews.txt
+# ie. common column here is column 2 of the first file and column 1 of the second file.
+# need to sort File1 and File2 first if not will have error?
