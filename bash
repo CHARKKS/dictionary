@@ -35,6 +35,14 @@ sed 's.{5} ' source.txt > destination.txt
 sed 's/.{8}$//g' source.txt > destination.txt
 # original file's data will remain unedited
 
+## to DELETE a particular row and then copy the data back into the same file
+sed -i.bak -e '5,10d;12d' file
+# deletes lines 5-10 and line 12
+
+## to DELETE specific character in every lines in the file
+sed 's/"//g' SUDHL1.txt > SUDHL2.tx
+# deletes all occurrences of "
+
 ## to GREP (any line in the sourcefile.txt containing the string (text/nu,bers) would be copied...
 grep "criteria" sourcefile.txt > destinationfile.txt
 # original file's data will remain unedited
