@@ -60,6 +60,9 @@ sed 's/StringToRepalce/Repalcementstring/g' source.txt > destination.txt
 # all occurrences of the string being replaced witll be substituted with the replacement string
 # warehouse would become warehome
 
+## to SCP files
+scp /Users/charlene/Desktop/FULL_EZH2.txt charlene@atlas.cbis.nus.edu.sg:/mnt/raid0/home/charlene
+
 ## to SORT files (alphabetically or numerically ithink)
 sort input.txt > output.txt
 sort -n input.txt > output.txt
