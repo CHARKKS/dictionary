@@ -1,0 +1,47 @@
+##colours
+library(RColorBrewer)
+mycolours = colorRampPalette(c("yellow", "orange", "red"))(n = 299)
+
+## creating heatmaps using pheatmap
+library(pheatmap)
+pheatmap(m.kmeans[,1:13],
+         main = "All loci",
+         col = mycolours,
+         breaks = c(seq(0,0.24,length = 100),
+                    seq(0.25,0.75,length = 100),
+                    seq(0.76,1,length = 100)),
+         legend = TRUE,
+         show_rownames = TRUE,
+         show_colnames = TRUE,
+         cluster_rows = T,
+         cluster_cols = F)
+
+
+## For creating methylation heatmaps (kmeans heatmaps)
+
+#order the matrix according to the number of clusters
+k2 <- kmeans(FULL_EZH2meth, centers = 2, nstart = 25)
+m.kmeans <- cbind(FULL_EZH2meth, k2$cluster) # combine the cluster with matrix
+dim(m.kmeans) # dimensions of new matrix
+o <- order(m.kmeans[,13]) #order the last column
+m.kmeans <- m.kmeans[o,] # order the matrix according to the order of the last column
+
+#rowsidecolours
+cluster <- m.kmeans$`k2$cluster`
+cols <- ifelse(cluster==1, "red", "blue")
+
+#heatmap using heatmap.2 from gplots
+library(gplots)
+m.kmeans.matrix <- as.matrix(m.kmeans) #heatmaps.2 uses the matrix form of data only
+heatmap.2(m.kmeans.matrix[,1:12],
+          main = "Methylation across all loci",
+          trace = "none",
+          col = mycolours,
+          breaks = c(seq(0,0.24,length = 100),
+                     seq(0.25,0.75,length = 100),
+                     seq(0.76,1,length = 100)),
+          key = TRUE, keysize = 1.5, density.info = "none",
+          Rowv = F,
+          Colv = F,
+          RowSideColors = cols)
+
