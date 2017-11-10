@@ -9,6 +9,9 @@ sed 's/$/text to add/g' source.txt > destination.txt
 ## to COUNT the number of lines
 wc -l source.txt
 
+## to COUNT the number of columns
+head -n 1 CG_exprs.txt | awk '{print NF}'
+
 ## to DELETE data from a file and replace it with anything
 sed 's/tobedeleted//g' old.txt > new.txt
 sed 's ..' source.txt > destination.txt
