@@ -57,6 +57,9 @@ grep -w "criteria" sourcefile.txt > destination file.txt
 ## replace delimiter with comma, space or a set of characters
 paste -d 'delimiter' file 1 file 2 > newfile
 
+## to PRINT the first line of a file and put it in a file
+awk 'NR==1 {print; exit}' GSE68379_Matrix.processed.txt > head.txt
+
 ## to REPLACE some data
 sed 's/StringToRepalce/Repalcementstring/g' source.txt > destination.txt
 # example: sed 's/house/home/g' mortgage.txt > owned.txt
