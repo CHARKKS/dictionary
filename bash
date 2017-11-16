@@ -46,6 +46,9 @@ sed -i.bak -e '5,10d;12d' file
 sed 's/"//g' SUDHL1.txt > SUDHL2.tx
 # deletes all occurrences of "
 
+## to DELETE lines containing particular words (here, is NA)
+egrep -v "NA" GSE68379_Matrix.processed.txt > GSE68379_matrix_withoutNA.txt
+
 ## to GREP (any line in the sourcefile.txt containing the string (text/nu,bers) would be copied...
 grep "criteria" sourcefile.txt > destinationfile.txt
 # original file's data will remain unedited
